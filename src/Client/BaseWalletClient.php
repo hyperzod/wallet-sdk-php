@@ -11,9 +11,9 @@ class BaseWalletClient implements WalletClientInterface
 {
 
    /** @var string default base URL for Wallet's API */
-   const DEV_API_BASE = 'https://wallet.apps.hyperzod.dev';
+   const DEV_API_BASE = 'https://wallet.apps.hyperzod.dev/api/v1';
 
-   const PRODUCTION_API_BASE = 'https://wallet.apps.hyperzod.app';
+   const PRODUCTION_API_BASE = 'https://wallet.apps.hyperzod.app/api/v1';
 
    /** @var array<string, mixed> */
    private $config;
@@ -85,8 +85,8 @@ class BaseWalletClient implements WalletClientInterface
 
    public function request($method, $path, $params)
    {
-      if (!isset($params['organization_id']) || empty($params['organization_id'])) {
-         throw new Exception("Organization Id is required to access hyperzod's api's.");
+      if (!isset($params['organization_slug']) || empty($params['organization_slug'])) {
+         throw new Exception("Organization slug is required to access hyperzod's api's.");
       }
 
       if (!isset($params['tenant_id']) || empty($params['tenant_id'])) {
@@ -97,11 +97,11 @@ class BaseWalletClient implements WalletClientInterface
          'headers' => [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $this->getApiKey()
+            'X-API-KEY' => $this->getApiKey()
          ]
       ]);
 
-      $path = '/' . $params['organization_id'] . '/' . $params['tenant_id'] . $path;
+      $path = '/' . $params['organization_slug'] . '/' . $params['tenant_id'] . $path;
 
       $api = $this->getApiBase() . $path;
 
@@ -109,6 +109,7 @@ class BaseWalletClient implements WalletClientInterface
          'http_errors' => true,
          'body' => json_encode($params)
       ]);
+
 
       return $this->validateResponse($response);
    }
@@ -168,13 +169,14 @@ class BaseWalletClient implements WalletClientInterface
 
       if ($status_code >= 200 && $status_code < 300) {
          $response = json_decode($response->getBody(), true);
-         if (isset($response["success"]) && boolval($response["success"])) {
+
+         if (isset($response["success"]) && boolval($response["success"]) === true) {
             if (isset($response["data"])) {
                return $response["data"];
             }
             throw new Exception("Data node not set in server response");
          }
-         if (isset($response["error"]) && boolval($response["error"])) {
+         if (isset($response["success"]) && boolval($response["success"]) === false) {
             $message = null;
             if (isset($response["message"])) {
                $message = $response["message"];

@@ -7,54 +7,41 @@ use Hyperzod\WalletSdkPhp\Enums\HttpMethodEnum;
 class WalletService extends AbstractService
 {
    /**
-    * List all task on Wallet
+    * Fetch Wallet
     *
     * @param array $params
     *
     * @throws \Hyperzod\WalletSdkPhp\Exception\ApiErrorException if the request fails
     *
     */
-   public function fetchWallet(array $params)
+   public function fetch(array $params)
    {
-      return $this->request(HttpMethodEnum::GET, '/task/list', $params);
+      return $this->request(HttpMethodEnum::GET, '/wallet/fetch', $params);
    }
 
    /**
-    * Create a task on Wallet
+    * Deduct Wallet
     *
     * @param array $params
     *
     * @throws \Hyperzod\WalletSdkPhp\Exception\ApiErrorException if the request fails
     *
     */
-   public function create(array $params)
+   public function deduct(array $params)
    {
-      return $this->request(HttpMethodEnum::POST, '/task/create', $params);
+      return $this->request(HttpMethodEnum::POST, '/wallet/deduct', $params);
    }
 
    /**
-    * Update status of a task on Wallet
+    * Get Wallet Setting
     *
     * @param array $params
     *
     * @throws \Hyperzod\WalletSdkPhp\Exception\ApiErrorException if the request fails
     *
     */
-   public function updateStatus(array $params)
+   public function settings(array $params)
    {
-      return $this->request(HttpMethodEnum::POST, '/task/update/status', $params);
-   }
-
-   /**
-    * Send notification for a task
-    *
-    * @param array $params
-    *
-    * @throws \Hyperzod\WalletSdkPhp\Exception\ApiErrorException if the request fails
-    *
-    */
-   public function sendNotification(array $params)
-   {
-      return $this->request(HttpMethodEnum::POST, '/task/sendNotification', $params);
+      return $this->request(HttpMethodEnum::GET, '/wallet/settings', $params);
    }
 }
