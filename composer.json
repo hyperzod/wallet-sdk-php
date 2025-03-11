@@ -1,0 +1,42 @@
+{
+  "name": "hyperzod/wallet-sdk-php",
+  "description": "A PHP SDK to integrate Wallet with your application.",
+  "keywords": [
+    "hyperzod",
+    "wallet-sdk-php"
+  ],
+  "homepage": "https://github.com/hyperzod/wallet-sdk-php",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Farhan Rizwan",
+      "email": "farhanrizwan123@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "guzzlehttp/guzzle": "^7.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hyperzod\\WalletSdkPhp\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Hyperzod\\WalletSdkPhp\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
