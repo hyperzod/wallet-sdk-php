@@ -20,11 +20,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email siddiquiazam966@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email farhanrizwan123@gmail.com instead of using the issue tracker.
 
 ## Credits
 
-- [Azam Siddiqui](https://github.com/siddiquiazam)
+- [Mohd Farhan Rizwan](https://github.com/farhanmanna)
 - [All Contributors](../../contributors)
 
 ## License
