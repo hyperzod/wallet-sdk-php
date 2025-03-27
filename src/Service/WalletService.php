@@ -33,6 +33,19 @@ class WalletService extends AbstractService
    }
 
    /**
+    * Validate Deduct Amount
+    *
+    * @param array $params
+    *
+    * @throws \Hyperzod\WalletSdkPhp\Exception\ApiErrorException if the request fails
+    */
+
+   public function validateDeductAmount(array $params)
+   {
+      return $this->request(HttpMethodEnum::POST, '/wallet/validate-deduct-amount', $params);
+   }
+
+   /**
     * Get Wallet Setting
     *
     * @param array $params
