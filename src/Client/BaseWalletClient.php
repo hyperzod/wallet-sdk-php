@@ -9,11 +9,10 @@ use Hyperzod\WalletSdkPhp\Exception\InvalidArgumentException;
 
 class BaseWalletClient implements WalletClientInterface
 {
-
    /** @var string default base URL for Wallet's API */
    const DEV_API_BASE = 'https://wallet.apps.hyperzod.dev/api/v1';
 
-   const PRODUCTION_API_BASE = 'https://wallet.apps.hyperzod.app/api/v1';
+   const PRODUCTION_API_BASE = 'https://wallet.apps.hyperzod.com/api/v1';
 
    /** @var array<string, mixed> */
    private $config;
